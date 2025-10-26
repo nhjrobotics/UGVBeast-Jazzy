@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <!-- THIS DEFINES HOW GAZEBO INTERACTS WITH ROBOT URDF -->
+    <gazebo>
+        <!-- Content will go here! -->
+        <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+            <!-- Wheel Information -->
+            <left_joint>left_up_sim_wheel_joint</left_joint>
+            <left_joint>left_down_sim_wheel_joint</left_joint>
+            <right_joint>right_up_sim_wheel_joint</right_joint>
+            <right_joint>right_down_sim_wheel_joint</right_joint>
+
+            <wheel_separation>0.123821989</wheel_separation>
+            <wheel_radius>0.012425</wheel_radius>
+
+            <publish_odom>true</publish_odom>
+            <odom_topic>odom</odom_topic>
+            <tf_topic>tf</tf_topic>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+            <odom_publish_frequency>50</odom_publish_frequency>
+            <topic>cmd_vel</topic>
+            <frame_id>odom</frame_id>
+            <child_frame_id>base_link</child_frame_id>
+        </plugin>
+
+        <plugin filename='gz-sim-joint-state-publisher-system' name='gz::sim::systems::JointStatePublisher'>
+            <joint_name>left_up_wheel_link_joint</joint_name>
+            <joint_name>left_down_wheel_link_joint</joint_name>
+            <joint_name>right_up_wheel_link_joint</joint_name>
+            <joint_name>right_down_wheel_link_joint</joint_name>
+            <joint_name>right_down_wheel_link_joint</joint_name>
+            <joint_name>pt_base_link_to_pt_link1</joint_name>
+            <joint_name>pt_link1_to_pt_link2</joint_name>
+            <joint_name>left_up_sim_wheel_joint</joint_name>
+            <joint_name>right_up_sim_wheel_joint</joint_name>
+            <joint_name>left_down_sim_wheel_joint</joint_name>
+            <joint_name>right_down_sim_wheel_joint</joint_name>
+            <topic>joint_states</topic>
+            <update_rate>30</update_rate>
+        </plugin>
+    </gazebo>
+
+
+
+
+
+  <link
+    name="left_down_sim_wheel_link">
+    <inertial>
+      <origin
+        xyz="7.2025718722557E-15 0.00599999763555432 3.33066907387547E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.00565722297095184" />
+      <inertia
+        ixx="2.80120931171082E-07"
+        ixy="1.73012571052522E-19"
+        ixz="7.08181663938282E-33"
+        iyy="4.2446851103923E-07"
+        iyz="5.90904673131262E-21"
+        izz="2.80120931171082E-07" />
+    </inertial>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find basestation)/meshes/ugv_beast/left_down_wheel_link.stl" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_down_sim_wheel_joint" type="continuous">
+    <parent link="chassis_link" />
+    <child link="left_down_sim_wheel_link" />
+    <axis xyz="0 1 0" />
+    <origin xyz="-0.0722382907996229 0.0707110003635451 -0.015" rpy="0 0 0" />
+  </joint>
+
+
+
+
+
+  <link
+    name="right_down_sim_wheel_link">
+    <inertial>
+      <origin
+        xyz="7.13318293321663E-15 -0.00599999763555434 3.33066907387547E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.00565722297095184" />
+      <inertia
+        ixx="2.80120931171082E-07"
+        ixy="-1.70986035603665E-19"
+        ixz="6.99903667727259E-33"
+        iyy="4.2446851103923E-07"
+        iyz="-5.90904673131262E-21"
+        izz="2.80120931171082E-07" />
+    </inertial>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find basestation)/meshes/ugv_beast/right_down_wheel_link.stl" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_down_sim_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0722382907996239 -0.0707110003635441 -0.015"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="right_down_sim_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+
+
+  <link
+    name="left_up_sim_wheel_link">
+    <inertial>
+      <origin
+        xyz="7.2025718722557E-15 0.00599999763555432 3.33066907387547E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.00565722297095184" />
+      <inertia
+        ixx="2.80120931171082E-07"
+        ixy="1.73012571052522E-19"
+        ixz="7.08181663938282E-33"
+        iyy="4.2446851103923E-07"
+        iyz="5.90904673131262E-21"
+        izz="2.80120931171082E-07" />
+    </inertial>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find basestation)/meshes/ugv_beast/left_down_wheel_link.stl" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_up_sim_wheel_joint" type="continuous">
+    <parent link="chassis_link" />
+    <child link="left_up_sim_wheel_link" />
+    <axis xyz="0 1 0" />
+    <origin xyz="0.0722382907996229 0.0707110003635451 -0.015" rpy="0 0 0" />
+  </joint>
+
+
+
+
+
+  <link
+    name="right_up_sim_wheel_link">
+    <inertial>
+      <origin
+        xyz="7.13318293321663E-15 -0.00599999763555434 3.33066907387547E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.00565722297095184" />
+      <inertia
+        ixx="2.80120931171082E-07"
+        ixy="-1.70986035603665E-19"
+        ixz="6.99903667727259E-33"
+        iyy="4.2446851103923E-07"
+        iyz="-5.90904673131262E-21"
+        izz="2.80120931171082E-07" />
+    </inertial>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find basestation)/meshes/ugv_beast/right_down_wheel_link.stl" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_up_sim_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.0722382907996239 -0.0707110003635441 -0.015"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="right_up_sim_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+
+
+
+</robot>

@@ -1,0 +1,38 @@
+slam_toolbox:
+  ros__parameters:
+    # Frames & timing
+    map_frame: map
+    odom_frame: odom
+    base_frame: base_link
+    publish_tf: true
+    provide_odom_frame: false
+    transform_publish_period: 0.03         # 30–50 Hz for smooth TF
+    map_publish_period: 1.0                # keeps /map latched & refreshed
+
+    # Keyframe / update gating (prevents over-frequent bad updates)
+    minimum_travel_distance: 0.05          # m; try 0.03–0.1
+    minimum_travel_heading: 0.05           # rad; ~3°
+    minimum_time_between_updates: 0.05     # s; avoid multiple updates per cycle
+
+    # Laser filtering (depends on your driver; set there if preferred)
+    max_laser_range: 12.0                  # clip noisy tail for LD06-class lidars
+    min_laser_range: 0.15
+
+    # Optimization / robustness
+    optimization_frequency: 0.5            # Hz; 0.2–1.0 (higher = crisper, heavier CPU)
+    pose_graph_save_path: /tmp             # (optional)
+    solver_plugins: ceres_solver           # default; keep
+    ceres_solver_options.max_num_iterations: 50
+    ceres_solver_options.num_threads: 4    # match CPU cores you can spare
+
+    # Loop closure (crucial for “straight walls” and drift control)
+    loop_search_max_range: 8.0             # m; set to the scale of your corridors
+    loop_search_min_chain_size: 10
+    loop_closure_threshold: 0.6            # 0.5–0.7; higher = stricter
+    do_loop_closing: true
+    do_relocalization: true                # helps when you re-enter known areas
+
+    # Map quality
+    resolution: 0.03                        # m/cell; 0.03–0.05 for indoor detail
+    track_unknown_space: true
+

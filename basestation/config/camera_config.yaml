@@ -1,0 +1,21 @@
+/oak:
+  ros__parameters:
+    camera:
+      i_pipeline_type: Depth
+      i_nn_type: none
+      i_floodlight_brightness: 800  # 800 is max
+      i_laser_dot_brightness: 1200  # 1200 is max
+    rgb:
+      i_low_bandwidth: true
+      i_publish_topic: false
+    left:
+      i_low_bandwidth: true
+      i_publish_topic: false
+    right:
+      i_low_bandwidth: true
+      i_publish_topic: false
+    stereo:
+      i_low_bandwidth: true 
+      i_publish_topic: true                                                                        >
+    pipeline_gen:
+      i_enable_diagnostics: false
