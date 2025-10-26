@@ -5,6 +5,8 @@ This repository contains a version of the onboard code from the UGV Beast by wav
 - Add Simulator in Gazebo Harmonic, including additions to URDF to facilitate
 - Tested and found to work in ROS Jazzy on Ubuntu 24.04
 
+Note: This is a community port and is not affiliated with Waveshare Electronics
+
 ## Install ROS Jazzy and Apt Packages
 
 Ensure you are running Ubuntu 24.04
